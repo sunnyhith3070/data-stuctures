@@ -88,13 +88,12 @@ class stack:
         
     def isempty(self):
         return self.s ==None
-    def size(self):
+    def size(self):          
         if self.isempty():
             return 0
         cur = self.s
         count=0
-        while cur.data is not None:
-            
+        while cur.data is not None:   #doubt why cur instead of cur.data doesnt give same answe
             count=count+1
             cur=cur.next
         return count
