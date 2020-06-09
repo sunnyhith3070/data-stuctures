@@ -1,0 +1,128 @@
+#array imp of stack using empty list
+class stack:
+    def __init__(self):
+        self.s=[]
+    def isempty(self):
+        return self.s==[]
+    def push(self,data):
+        self.s.append(data)
+    def pop(self):
+        if self.isempty():
+            return False
+        self.s.pop()
+    def peek(self):
+        if self.isempty():
+            return False
+        return self.s[-1]
+#array imp of stack using list of certain size
+class stack:
+    def __init__(self,size=10):
+        self.s=[None]*size
+        self.count=0
+    def isempty(self):
+        return self.count == 0
+    def isfull(self):
+        return self.count == len(self.s)
+        
+    def push(self,data):
+        if self.isfull():
+            return False
+        self.s[self.count]=data
+        self.count=self.count+1
+        
+    def pop(self):
+        if self.isempty():
+            return False
+        self.s[self.count]=None
+        self.count=self.count-1
+    def peek(self):
+        if (self.isempty()):
+            return False
+        return self.s[self.count-1]
+    def diplay(self):
+        print(self.s)
+#dynamic array imp of stack by resizing
+class stack:
+    def __init__(self,size=10):
+        self.s=[None]*size
+        self.count=0
+    def isempty(self):
+        return self.count == 0
+    def isfull(self):
+        return self.count == len(self.s)
+        
+    def push(self,data):
+        if self.isfull():
+            self.resize()
+        self.s[self.count]=data
+        self.count=self.count+1
+        
+    def pop(self):
+        if self.isempty():
+            return False
+        self.s[self.count]=None
+        self.count=self.count-1
+    def peek(self):
+        if (self.isempty()):
+            return False
+        return self.s[self.count-1]
+    def resize(self):
+        new=self.s
+        self.s=2*(len(new))*[None]
+        for i in range(len(new)):
+            self.s[i]=new[i]
+        
+        
+    def diplay(self):
+        print(self.s)
+
+#linked list imp of stack 
+class node:
+    def __init__(self,data=None):
+        self.data=data
+        self.next=None
+class stack:
+    def __init__(self,limit=10):
+        self.s=node()
+        self.limit=limit
+        
+    def isempty(self):
+        return self.s ==None
+    def size(self):
+        if self.isempty():
+            return 0
+        cur = self.s
+        count=0
+        while cur.data is not None:
+            
+            count=count+1
+            cur=cur.next
+        return count
+        
+    def push(self,data):
+        if self.size() >= self.limit:
+            return False
+        new=node(data)
+        new.next=self.s
+        self.s=new
+        
+        
+    def pop(self):
+        if self.isempty():
+            return False
+        cur=self.s
+        self.s=self.s.next
+        return cur.data
+        
+    def peek(self):
+        if self.isempty():
+            return False
+        return self.s.data
+    
+    def display(self):
+        cur=self.s
+        ele=[]
+        while cur.data != None:
+            ele.append(cur.data)
+            cur=cur.next
+        return ele
