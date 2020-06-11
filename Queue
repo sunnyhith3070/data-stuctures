@@ -1,1 +1,229 @@
+#array imp of queue using list
+class queue:
+    def __init__(self):
+        self.q=[]
+    def isempty(self):
+        return self.siz()==0
+    def siz(self):
+        return len(self.q)
+    def enqueue(self,data):
+        self.q.append(data)
+    def dequeue(self):
+        if self.isempty():
+            return False
+        x=self.q.pop(0)
+        return x
+    def display(self):
+        print(self.q)
+#array imp of queue using list without using pop to reduce time complexity
+class queue:
+    def __init__(self):
+        self.q=[]
+        self.front=0
+    def isempty(self):
+        return self.siz()==0
+    def siz(self):
+        return len(self.q)-self.front
+    def enqueue(self,data):
+            self.q.append(data)
+    def dequeue(self):
+        if self.isempty():
+            return False
+        x=self.q[self.front]
+        self.q[self.front]=None
+        self.front=self.front+1
+        return x
+    def display(self):
+        ele=[]
+        for i in range(self.front,len(self.q)):
+            ele.append(self.q[i])
+        print(ele)
+    def display1(self):
+        print(self.q)
+        
 
+#array imp of queue using circular list using rear and front because of memory wastage in prev mesthod
+class queue:
+    def __init__(self,size=10):
+        self.q=[None]*size
+        self.size=size
+        self.front=0
+        self.rear=-1
+    def isempty(self):
+        return self.siz()==0
+    def isfull(self):
+        return self.siz()==self.size
+    def siz(self):
+        if self.rear-self.front > 0:
+            return self.rear-self.front
+        elif self.rear == self.front:
+            return 1
+        
+        elif self.rear-self.front == -1:
+            if self.q[self.rear]==None:
+                return 0
+            else:
+                return self.size
+        else:
+            return self.size-self.front+self.rear+1
+    def enqueue(self,data):
+        if self.isfull():
+            self.resize()
+        self.rear=(self.rear+1)%self.size
+        self.q[self.rear]=data
+    def dequeue(self):
+        if self.isempty():
+            return False
+        
+        x=self.q[self.front]
+        self.q[self.front]= None
+        self.front=(self.front+1)% self.size
+        return x
+    def display(self):
+        print(self.q)
+    def resize(self):
+        x=self.q
+        self.size=2*self.size
+        self.q=[None]*self.size
+        for i in range(len(x)):
+            y=(self.front+i)%(len(x))
+            self.q[i]=x[y]
+        self.front=0
+        self.rear=len(x)-1
+        
+        
+#array imp of queue using circular list using only front
+class queue:
+    def __init__(self,size=10):
+        self.q=[None]*size
+        self.size=size
+        self.front=0
+        self.count=0
+    def isempty(self):
+        return self.count==0
+    def isfull(self):
+        return self.count==self.size
+    def siz(self):
+        return self.count
+    def enqueue(self,data):
+        if self.isfull():
+            self.resize()
+        y=(self.front+self.count)%self.size
+        self.q[y]=data
+        self.count=self.count+1
+        
+    def dequeue(self):
+        if self.isempty():
+            return False
+        x=self.q[self.front]
+        self.q[self.front]= None
+        self.front=(self.front+1)% self.size
+        self.count=self.count-1
+        return x
+        
+    def display(self):
+        print(self.q)
+        
+    def resize(self):
+        x=self.q
+        self.size=2*self.size
+        self.q=[None]*self.size
+        for i in range(len(x)):
+            y=(self.front+i)%(len(x))
+            self.q[i]=x[y]
+        self.front=0
+        self.count=len(x)
+#linked list imp of queue
+class node:
+    def __init__(self,data=None):
+        self.next=None
+        self.data=data
+    
+class queue:
+    def __init__(self):
+        self.front=None
+        self.rear=None
+    def isempty(self):
+        return self.siz()==0
+    
+    def siz(self):
+        count=0
+        cur=self.front
+        while cur!=None:
+            cur=cur.next
+            count=count+1
+        return count
+    def enqueue(self,data):
+        new=node(data)
+        if self.front == None:
+            self.front=new
+            self.rear=new
+        else:
+            self.rear.next=new
+            self.rear=new
+    def dequeue(self):
+        if self.isempty():
+            return False
+        x=self.front.data
+        self.front=self.front.next
+        return x
+    def display(self):
+        ele=[]
+        cur=self.front
+        while cur!=None:
+            ele.append(cur.data)
+            cur=cur.next
+        print(ele)
+
+#circular linked list imp of queue
+class node:
+    def __init__(self,data=None):
+        self.next=None
+        self.data=data
+    
+class queue:
+    def __init__(self):
+        self.rear=None
+    def isempty(self):
+        return self.siz()==0
+    def siz(self):
+        if self.rear == None:
+            return 0
+        cur=self.rear.next
+        count=0
+        while cur != self.rear :
+            cur=cur.next
+            count=count+1
+        return count+1
+            
+    def enqueue(self,data):
+        new=node(data)
+        if self.rear==None:
+            self.rear=new
+            self.rear.next=self.rear
+        else:
+            new.next=self.rear.next
+            self.rear.next=new
+            self.rear=new
+    def dequeue(self):
+        if self.isempty():
+            return False
+        if self.rear == self.rear.next:
+            k=self.rear
+            self.rear=None
+            
+        else:
+            k=self.rear.next
+            self.rear.next=k.next
+        return k.data
+    def display(self):
+        if self.isempty():
+            print("queue is empty")
+        else:
+            cur=self.rear
+            ele=[]
+            while cur.next != self.rear :
+                cur=cur.next
+                ele.append(cur.data)
+            ele.append(self.rear.data)
+            print(ele)
