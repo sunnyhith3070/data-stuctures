@@ -1,0 +1,33 @@
+#selection sort
+def selectionsort(a):
+    l=len(a)
+    for i in range(l-1):
+        mi=i
+        for j in range(i+1,l):
+            if a[j] < a[mi]:
+                mi=j
+        if mi != i :
+            a[i],a[mi]=a[mi],a[i]
+
+a=[2,5,3,9,7,4,1]
+selectionsort(a)
+print(a)
+#O(n2)
+
+#bubble sort
+def bubblesort(a):
+    l=len(a)
+    for j in range(l-1):
+        for i in range(l-j-1):
+            if a[i] > a[i+1]:
+                a[i],a[i+1]=a[i+1],a[i]
+            
+    
+a=[21,54,63,91,78,13,10]
+bubblesort(a)
+print(a)
+#O(n2)#best case O(n)
+
+#insertion sort
+
+
