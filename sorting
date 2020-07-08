@@ -13,6 +13,7 @@ a=[2,5,3,9,7,4,1]
 selectionsort(a)
 print(a)
 #O(n2)
+#sp O(1)
 
 #bubble sort
 def bubblesort(a):
@@ -27,6 +28,7 @@ a=[21,54,63,91,78,13,10]
 bubblesort(a)
 print(a)
 #O(n2)#best case O(n)
+#sp O(1)
 #modification
 def bubblesort(a):
     l=len(a)
@@ -54,6 +56,7 @@ a=[21,54,63,91,78,13,10]
 insertionsort(a)
 print(a)
 #O(n2)#best case O(n)
+#sp O(1)
 
 #shell sort
 def shellsort(a):
@@ -73,8 +76,45 @@ a=[21,54,63,91,78,13,10]
 shellsort(a)
 print(a)
 #O(n(logn)2) or O(n**1.25)
+#sp O(1)
 
-#merge sort
+#quick sort
+def quicksort(a):
+    sort(a,0,len(a)-1)
+def sort(a,low,up):
+    if low >= up:
+        return
+    p=partition(a,low,up)
+    sort(a,low,p-1)
+    sort(a,p+1,up)
+def partition(a,low,up):
+    p=a[low]
+    i=low+1
+    j=up
+    while i<=j:
+        while a[i]<p and i<up:
+            i+=1
+        while a[j]>p:
+            j-=1
+        if i<j:
+            temp=a[j]
+            a[j]=a[i]
+            a[i]=temp
+            i=i+1
+            j=j-1
+        else:
+            break
+    a[low]=a[j]
+    a[j]=p
+    return j
+    
+    
+     
+a=[21,54,63,91,78,13,10]
+quicksort(a)
+print(a)
+#best case O(nlogn) worst case O(n**2)
+#space comp O(logn)
 
 
 
