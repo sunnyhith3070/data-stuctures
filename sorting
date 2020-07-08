@@ -116,6 +116,115 @@ print(a)
 #best case O(nlogn) worst case O(n**2)
 #space comp O(logn)
 
+#mergesort recursively
+def mergesort(a):
+    l=len(a)
+    temp=[None]*l
+    sort(a,temp,0,l-1)
+def sort(a,temp,low,up):
+    if low>=up:
+        return
+    mid=(low+up) //2
+    sort(a,temp,low,mid)
+    sort(a,temp,mid+1,up)
+    merge(a,temp,low,mid,mid+1,up)
+    copy(a,temp,low,up)
+    
+def merge(a,temp,low1,up1,low2,up2):
+    i=low1
+    j=low2
+    k=0
+    while i<=up1 and j<=up2:
+        if a[i]<a[j]:
+            temp[k]=a[i]
+            i+=1
+        else:
+            temp[k]=a[j]
+            j+=1
+        k+=1
+    
+    while i<=up1:
+        temp[k]=a[i]
+        i+=1
+        k+=1
+    while j<=up2:
+        temp[k]=a[j]
+        j+=1
+        k+=1
+    
+def copy(a,temp,low,up):
+    i=low
+    j=up
+    k=0
+    while i<=j:
+        a[i]=temp[k]
+        k+=1
+        i+=1
+
+a=[103,21,54,59,6,31,78,13,10]
+mergesort(a)
+print(a)
+
+#mergesort iterative
+def mergesort(a):
+    l=len(a)
+    temp=[None]*l
+    size=1
+    while size<=l-1:
+        sortpass(a,temp,size,l)
+        size=2*size
+    
+def sortpass(a,temp,size,n):
+    low1=0
+    while low1+size <= n-1:
+        up1=low1+size-1
+        low2=low1+size
+        up2=low2+size-1
+        if up2>=n:
+            up2=n-1
+        merge(a,temp,low1,up1,low2,up2)
+        low1=up2+1
+    for i in range(low1,n):
+        temp[i]=a[i]
+    copy(a,temp,n)
+    
+def merge(a,temp,low1,up1,low2,up2):
+    i=low1
+    j=low2
+    k=low1
+    while i<=up1 and j<=up2:
+        if a[i]<a[j]:
+            temp[k]=a[i]
+            i+=1
+        else:
+            temp[k]=a[j]
+            j+=1
+        k+=1
+    
+    while i<=up1:
+        temp[k]=a[i]
+        i+=1
+        k+=1
+    while j<=up2:
+        temp[k]=a[j]
+        j+=1
+        k+=1
+    
+def copy(a,temp,n):
+    for i in range(n):
+        a[i]=temp[i]
+
+a=[103,21,54,59,6,31,78,13,10]
+mergesort(a)
+print(a)
+
+#O(nlogn)
+#sc O(n)
+
+
+
+
+
 
 
 
