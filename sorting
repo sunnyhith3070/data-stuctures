@@ -221,8 +221,30 @@ print(a)
 #O(nlogn)
 #sc O(n)
 
+#linear search
+def linearsearch(a,n,x):
+    
 
-
+#binary search
+def binarysearch(a,l,h,x):
+    if l>h:
+        return -1
+    m=(l+h)//2
+    if x == a[m]:
+        return m
+    elif x>a[m]:
+        return binarysearch(a,m+1,h,x)
+    elif x<a[m]:
+        return binarysearch(a,l,m-1,x)
+        
+    
+a=[17,25,53,61,69,71,83,91]
+c=binarysearch(a,0,7,71)
+if c==-1:
+    print("not found")
+else:
+    print("found",c)
+#O(logn)
 
 
 
