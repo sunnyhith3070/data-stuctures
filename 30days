@@ -1,1 +1,32 @@
-
+#count and say sequence
+def rec(n):
+    if n==1:
+        return "1"
+    elif n==2:
+        return "11"
+    else:
+        t=rec(n-1)
+        l=len(t)
+        st=""
+        j=0
+        i=0
+        while True:
+            count=0
+            i=j
+            while True:
+                if i>=l:
+                    break
+                if t[j]==t[i]:
+                    count=count+1
+                else:
+                    break
+                i=i+1
+            st=st+str(count)+t[j]
+            j=j+count
+            if j>=l:
+                break
+        return st
+        
+n=5
+t=rec(n)
+print(t)
