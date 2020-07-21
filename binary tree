@@ -1,7 +1,51 @@
-#creating a tree
-#display
-#height of a tree
-#level order travresal
-#inorder
-#preorder
-#postorder
+class node:
+    def __init__(self,value):
+        self.data=value
+        self.left=None
+        self.right=None
+class binarytree:
+    def __init__(self):
+        self.root=None
+    def traversalspiral(self):
+        h1=self.height(self.root)
+        k=-1
+        for i in range(1,h1+1):
+            self.ts(self.root,i,k)
+            k=-k
+    def ts(self,p,level,k):
+        if p is None:
+            return
+        elif level==1:
+            print(p.data,end=" ")
+        elif level>1:
+            if k==1:
+                self.ts(p.left,level-1,k)
+                self.ts(p.right,level-1,k)
+            elif k==-1:
+                self.ts(p.right,level-1,k)
+                self.ts(p.left,level-1,k)
+        
+    
+                
+    def h(self):
+        t=self.height(self.root)
+        print(t)
+    def height(self,p):
+        if p is None:
+            return 0
+        else:
+            return 1+max(self.height(p.left),self.height(p.right))
+        
+            
+    def createtree(self):
+        self.root=node(1)
+        self.root.left=node(2)
+        self.root.right=node(3)
+        self.root.left.left=node(7)
+        self.root.left.right=node(6)
+        self.root.right.left=node(5)
+        self.root.right.right=node(4)
+        
+l=binarytree()
+l.createtree()
+l.traversalspiral()
