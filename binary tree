@@ -6,7 +6,7 @@ class node:
 class binarytree:
     def __init__(self):
         self.root=None
-    #tree traversal
+    #tree traversal1
     def traversalspiral(self):
         h1=self.height(self.root)
         k=-1
@@ -25,6 +25,20 @@ class binarytree:
             elif k==-1:
                 self.ts(p.right,level-1,k)
                 self.ts(p.left,level-1,k)
+    #tree traversal2
+    def traversal(self):
+        self.util(self.root)
+    def util(self,p):
+        q=[]
+        q.append(p)
+        while len(q):
+            y=q[0]
+            if y.left != None:
+                q.append(y.left)
+            if y.right != None:
+                q.append(y.right)
+            x=q.pop(0)
+            print(x.data,end=" ")
         
     
     #height           
