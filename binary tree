@@ -61,6 +61,23 @@ class binarytree:
         lh=self.height(p.left)
         rh=self.height(p.right)
         return max(1+lh+rh,max(ld,rd))
+    #maxsumpath
+    def maxpathsum(self):
+        x=self.util(self.root)
+        print(x)
+        
+    def summ(self,p):
+        if p is None:
+            return 0
+        return p.data+max(self.summ(p.left),self.summ(p.right))
+    def util(self,p):
+        if p is None:
+            return 0
+        lu=self.util(p.left)
+        ru=self.util(p.right)
+        ls=self.summ(p.left)
+        rs=self.summ(p.right)
+        return max(ls+rs+p.data,max(lu,ru))
     #balancedtree
     def balancedtree(self):
         return self.btutil(self.root)
