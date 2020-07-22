@@ -6,6 +6,7 @@ class node:
 class binarytree:
     def __init__(self):
         self.root=None
+    #tree traversal
     def traversalspiral(self):
         h1=self.height(self.root)
         k=-1
@@ -26,7 +27,7 @@ class binarytree:
                 self.ts(p.left,level-1,k)
         
     
-                
+    #height           
     def h(self):
         t=self.height(self.root)
         print(t)
@@ -35,6 +36,7 @@ class binarytree:
             return 0
         else:
             return 1+max(self.height(p.left),self.height(p.right))
+    #diameter
     def diameter(self):
         return self.diameterutil(self.root)
     def diameterutil(self,p):
@@ -45,6 +47,18 @@ class binarytree:
         lh=self.height(p.left)
         rh=self.height(p.right)
         return max(1+lh+rh,max(ld,rd))
+    #balancedtree
+    def balancedtree(self):
+        return self.btutil(self.root)
+    def btutil(self,p):
+        if  p is None:
+            return True
+        hl=self.height(p.left)
+        hr=self.height(p.right)
+        if abs(hl-hr)<=1 and self.btutil(p.left) and self.btutil(p.right):
+            return True
+        else:
+            return False
         
             
     def createtree(self):
