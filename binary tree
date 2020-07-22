@@ -35,6 +35,16 @@ class binarytree:
             return 0
         else:
             return 1+max(self.height(p.left),self.height(p.right))
+    def diameter(self):
+        return self.diameterutil(self.root)
+    def diameterutil(self,p):
+        if p is None:
+            return 0
+        ld=self.diameterutil(p.left)
+        rd=self.diameterutil(p.right)
+        lh=self.height(p.left)
+        rh=self.height(p.right)
+        return max(1+lh+rh,max(ld,rd))
         
             
     def createtree(self):
