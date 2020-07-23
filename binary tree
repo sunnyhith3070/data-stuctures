@@ -61,7 +61,7 @@ class binarytree:
         lh=self.height(p.left)
         rh=self.height(p.right)
         return max(1+lh+rh,max(ld,rd))
-    #maxsumpath
+    #maxsumpath between any two nodes
     def maxpathsum(self):
         x=self.util(self.root)
         print(x)
