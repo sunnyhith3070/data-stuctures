@@ -78,6 +78,60 @@ class binarytree:
         ls=self.summ(p.left)
         rs=self.summ(p.right)
         return max(ls+rs+p.data,max(lu,ru))
+#maxsumpath between two leaf nodes
+min1=-2**32
+class Node:
+    def __init__(self,value):
+        self.data=value
+        self.left=None
+        self.right=None
+class binarytree:
+    def __init__(self):
+        self.root=None
+        
+    def maxpathsum(self):
+        res=[min1]
+        self.util(self.root,res)
+        print(res[0])
+        
+    def summ(self,p):
+        if p is None:
+            return 0
+        if p.left is None and p.right is None:
+            return p.data
+        return p.data+max(self.summ(p.left),self.summ(p.right))
+    def util(self,p,res):
+        if p is None:
+            return 0
+
+        if p.left is None and p.right is None:
+            return p.data
+        lu=self.util(p.left,res)
+        ru=self.util(p.right,res)
+        
+        if p.left is not None and p.right is not None:
+            res[0]=max(res[0],lu+ru+p.data)
+            return max(p.data+lu,p.data+ru)
+        if p.left is None:
+            return p.data+lu
+        else:
+            return p.data+ru
+    
+        
+        
+        
+
+
+    def createtree(self):
+        self.root = Node(-9) 
+        self.root.left = Node(6) 
+        self.root.right = Node(-10)
+        #self.root.left.right = Node(1)
+        
+
+l=binarytree()
+l.createtree()  
+l.maxpathsum()
     #balancedtree
     def balancedtree(self):
         return self.btutil(self.root)
