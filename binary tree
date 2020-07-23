@@ -162,6 +162,28 @@ l.maxpathsum()
     elif a.data==b.data and identical(a.left,b.left) and identical(a.right,b.right):
         return True
     return False
+ #lca
+ def lca(root, n1, n2):
+    path1=[]
+    path2=[]
+    if not util(root,a,path1) or not util(root,b,path2):
+        return -1
+    if util(root,a,path1) and util(root,b,path2):
+        for i in range(len(path1)):
+            if path1[i]!=path2[i]:
+                break
+        return path1[i-1]
+ def util(p,a,path):
+    if p is None:
+        return False
+    path.append(p)
+    if p.data == a:
+        return True
+    
+    if util(p.left,a,path) or util(p.right,a,path):
+        return True
+    path.pop()
+    return False
         
 l=binarytree()
 l.createtree()
