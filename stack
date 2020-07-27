@@ -125,3 +125,40 @@ class stack:
             ele.append(cur.data)
             cur=cur.next
         return ele
+        
+        
+ # balanced parenthesis not sure
+def p(l):
+    s=[]
+    for c in l:
+        if c in "{[(":
+            s.append(c)
+        elif c in "}])":
+            if s==[]:
+                print("not balanced")
+                break
+            else:
+                c1=s.pop()
+                if not check(c1,c):
+                    print("not balanced")
+                    break
+                    
+
+    if s==[]:
+        print("balanced")
+    else:
+        print("not balanced")
+def check(c1,c):
+    if c == "}" and c1 == "{":
+        return True
+    elif c == ")" and c1 == "(":
+        return True
+    elif c == "]" and c1 == "[":
+        return True
+    return False
+
+n=int(input())
+for _ in range(n):
+    s=input()
+    l1=list(s)
+    p(l1)
