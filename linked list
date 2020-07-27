@@ -28,10 +28,6 @@ class linkedlist:
             prev=cur
             cur=next
         self.head.next=prev
-    
-        
-        
-        
 l=linkedlist()
 l.append(1)
 l.append(2)
@@ -40,4 +36,11 @@ l.append(4)
 l.append(5)
 l.display()
 l.reverse()
-l.display()
+l.display() 
+
+    
+    
+        
+        
+        
+
